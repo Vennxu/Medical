@@ -62,7 +62,7 @@ public class NewsFragment extends BaseFragment implements BGARefreshLayout.BGARe
             public void onItemClick(int position) {
                 NewsListPolo newsListPojo = mAdapter.getItem(position);
                 Intent intent = new Intent(mContext, NewsDescriptionActivity.class);
-                intent.putExtra(NewsDescriptionActivity.DETAIL, newsListPojo);
+                intent.putExtra(NewsDescriptionActivity.DETAIL, newsListPojo.getId());
                 startActivity(intent);
             }
         });
@@ -111,7 +111,7 @@ public class NewsFragment extends BaseFragment implements BGARefreshLayout.BGARe
         }
         mHttpManager.getNewsList(mNewsClassPojo.getId(), mIsRefresh ? mRefreshPage : mMorePage, "20", "id", new NewsResultListener() {
             @Override
-            public void onReulst(boolean succes, Object result) {
+            public void onResult(boolean succes, Object result) {
                 mHandler.obtainMessage(succes ? LOAD_SUCCES : LOAD_FAILED, result).sendToTarget();
             }
         });

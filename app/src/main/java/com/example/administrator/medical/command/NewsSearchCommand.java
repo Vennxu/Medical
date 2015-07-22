@@ -1,6 +1,7 @@
 package com.example.administrator.medical.command;
 
 import com.example.administrator.medical.pojo.NewsClassPojo;
+import com.example.administrator.medical.pojo.NewsSearchPojo;
 import com.example.administrator.medical.utils.TextUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -62,7 +63,7 @@ public class NewsSearchCommand extends BaseCommand{
             return null;
         }
         try{
-            return new Gson().fromJson(searchJson, new TypeToken<List<NewsClassPojo>>() {}.getType());
+            return new Gson().fromJson(searchJson, new TypeToken<List<NewsSearchPojo>>() {}.getType());
         }catch (Exception e){
             return null;
         }

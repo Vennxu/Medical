@@ -1,7 +1,6 @@
 package com.example.administrator.medical.ui;
 
-import android.os.Handler;
-import android.os.Message;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -14,12 +13,9 @@ import android.view.MenuItem;
 
 
 import com.example.administrator.medical.R;
-import com.example.administrator.medical.http.NewsHttpManager;
-import com.example.administrator.medical.http.NewsResultListener;
 import com.example.administrator.medical.pojo.NewsClassPojo;
 import com.example.administrator.medical.sqlite.Dao.NewsClassDao;
 import com.example.administrator.medical.ui.fragment.NewsFragment;
-import com.example.administrator.medical.ui.widget.EmptyLayout;
 import com.example.administrator.medical.ui.widget.PagerSlidingTabStrip;
 
 import java.util.ArrayList;
@@ -44,6 +40,21 @@ public class MainActivity extends AppCompatActivity{
         mToolbar = (Toolbar) findViewById(R.id.main_toorbar);
         mToolbar.setTitle(getString(R.string.title));
         mToolbar.setTitleTextColor(getResources().getColor(R.color.white));
+        mToolbar.setNavigationIcon(R.mipmap.ic_drawer);
+        setSupportActionBar(mToolbar);
+        mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.toolbar_search:
+                        MainActivity.this.startActivity(new Intent(MainActivity.this, SearchActivity.class));
+                        break;
+                    default:
+                        break;
+                }
+                return false;
+            }
+        });
     }
 
     private void getFragment(){
@@ -66,14 +77,6 @@ public class MainActivity extends AppCompatActivity{
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     public class MainFragmentAdapter extends FragmentPagerAdapter{
 

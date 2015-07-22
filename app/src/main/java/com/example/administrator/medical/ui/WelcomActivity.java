@@ -33,7 +33,7 @@ public class WelcomActivity extends Activity implements Handler.Callback{
     private void getLoadSubtitle(){
         NewsHttpManager.getInstance(this).getNewsClass("1", getString(R.string.news_class), new NewsResultListener() {
             @Override
-            public void onReulst(boolean succes, Object result) {
+            public void onResult(boolean succes, Object result) {
                 handler.obtainMessage(succes ? LOAD_SUCCES : LOAD_FAILED, result).sendToTarget();
             }
         });
@@ -53,9 +53,12 @@ public class WelcomActivity extends Activity implements Handler.Callback{
                     }
                     startActivity(new Intent(this, MainActivity.class));
                     finish();
+                }else{
+                    getLoadSubtitle();
                 }
                 break;
             case LOAD_FAILED:
+                getLoadSubtitle();
                 break;
             default:
                 handle = true;

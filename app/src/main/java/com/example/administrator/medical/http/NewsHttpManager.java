@@ -50,7 +50,7 @@ public class NewsHttpManager extends BaseHttpManager {
 
             @Override
             public void result(boolean succese, Object result) {
-                mResultListener.onReulst(succese, result);
+                mResultListener.onResult(succese, result);
             }
         }.call();
     }
@@ -70,7 +70,7 @@ public class NewsHttpManager extends BaseHttpManager {
 
             @Override
             public void result(boolean succese, Object result) {
-                mResultListener.onReulst(succese, result);
+                mResultListener.onResult(succese, result);
             }
         }.call();
     }
@@ -86,7 +86,7 @@ public class NewsHttpManager extends BaseHttpManager {
 
             @Override
             public void result(boolean succese, Object result) {
-                mResultListener.onReulst(succese, result);
+                mResultListener.onResult(succese, result);
             }
         }.call();
     }
@@ -105,7 +105,7 @@ public class NewsHttpManager extends BaseHttpManager {
 
             @Override
             public void result(boolean succese, Object result) {
-                mResultListener.onReulst(succese, result);
+                mResultListener.onResult(succese, result);
             }
         }.call();
     }

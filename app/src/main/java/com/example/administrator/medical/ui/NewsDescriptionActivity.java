@@ -15,6 +15,7 @@ import com.example.administrator.medical.http.NewsResultListener;
 import com.example.administrator.medical.imageloader.NewImageDisplay;
 import com.example.administrator.medical.pojo.NewsDecriptionPojo;
 import com.example.administrator.medical.pojo.NewsListPolo;
+import com.example.administrator.medical.utils.DataUtils;
 
 /**
  * Created by Administrator on 2015/7/21.
@@ -27,9 +28,10 @@ public class NewsDescriptionActivity extends Activity implements Handler.Callbac
 
     private TextView mTitleView;
     private TextView mContent;
+    private TextView mTime;
     private ImageView mImage;
     private NewsDecriptionPojo mDetail;
-    private NewsListPolo mListPojo;
+    private String titleId;
 
     private Handler handler = new Handler(this);
 
@@ -37,7 +39,7 @@ public class NewsDescriptionActivity extends Activity implements Handler.Callbac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_description);
-        mListPojo = getIntent().getParcelableExtra(DETAIL);
+        titleId = getIntent().getStringExtra(DETAIL);
         onDescriptionView();
     }
 
@@ -45,15 +47,15 @@ public class NewsDescriptionActivity extends Activity implements Handler.Callbac
         mTitleView = (TextView) findViewById(R.id.description_title);
         mContent = (TextView) findViewById(R.id.description_content);
         mImage = (ImageView) findViewById(R.id.description_image);
+        mTime = (TextView) findViewById(R.id.description_time);
         mContent.setMovementMethod(LinkMovementMethod.getInstance());
-        mTitleView.setText(mListPojo.getTitle().trim());
         loadDetail();
     }
 
     private void loadDetail(){
-        NewsHttpManager.getInstance(this).getNewsDetail(mListPojo.getId(), new NewsResultListener() {
+        NewsHttpManager.getInstance(this).getNewsDetail(titleId, new NewsResultListener() {
             @Override
-            public void onReulst(boolean succes, Object result) {
+            public void onResult(boolean succes, Object result) {
                 handler.obtainMessage(succes ? LOAD_SUCCES:LOAD_FAILED, result).sendToTarget();
             }
         });
@@ -68,6 +70,8 @@ public class NewsDescriptionActivity extends Activity implements Handler.Callbac
                 if (mDetail != null) {
                     String html = "<html><body>" + mDetail.getMessage() + "</body></html>";
                     mContent.setText(Html.fromHtml(html, null, null));
+                    mTitleView.setText(mDetail.getTitle().trim());
+                    mTime.setText(DataUtils.dateFormat(mDetail.getTime()));
                     NewImageDisplay.getInstance(this).loadImageUrl(mDetail.getImg(), mImage);
                 }
                 break;
