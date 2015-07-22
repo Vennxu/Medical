@@ -91,7 +91,9 @@ public class SearchActivity extends Activity implements View.OnClickListener, Ha
         switch (msg.what){
             case LOAD_SUCCES:
                 ArrayList<NewsSearchPojo> newsSearchPojos = (ArrayList<NewsSearchPojo>) msg.obj;
-                mAdapter.addRefreshData(newsSearchPojos);
+                if (newsSearchPojos != null) {
+                    mAdapter.addRefreshData(newsSearchPojos);
+                }
                 break;
             case LOAD_FAILED:
                 break;

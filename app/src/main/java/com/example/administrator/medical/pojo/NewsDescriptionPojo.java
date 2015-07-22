@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * Created by Administrator on 2015/7/17.
  */
-public class NewsDecriptionPojo implements Parcelable {
+public class NewsDescriptionPojo implements Parcelable {
 
     /**
      * 资讯ID
@@ -56,12 +56,12 @@ public class NewsDecriptionPojo implements Parcelable {
      */
     private Date time;
 
-    public NewsDecriptionPojo() {
+    public NewsDescriptionPojo() {
 
     }
 
 
-    protected NewsDecriptionPojo(Parcel in) {
+    protected NewsDescriptionPojo(Parcel in) {
         id = in.readString();
         title = in.readString();
         tag = in.readString();
@@ -74,15 +74,15 @@ public class NewsDecriptionPojo implements Parcelable {
         focal = in.readInt();
     }
 
-    public static final Creator<NewsDecriptionPojo> CREATOR = new Creator<NewsDecriptionPojo>() {
+    public static final Creator<NewsDescriptionPojo> CREATOR = new Creator<NewsDescriptionPojo>() {
         @Override
-        public NewsDecriptionPojo createFromParcel(Parcel in) {
-            return new NewsDecriptionPojo(in);
+        public NewsDescriptionPojo createFromParcel(Parcel in) {
+            return new NewsDescriptionPojo(in);
         }
 
         @Override
-        public NewsDecriptionPojo[] newArray(int size) {
-            return new NewsDecriptionPojo[size];
+        public NewsDescriptionPojo[] newArray(int size) {
+            return new NewsDescriptionPojo[size];
         }
     };
 

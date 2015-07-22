@@ -1,12 +1,8 @@
 package com.example.administrator.medical.command;
 
-import com.example.administrator.medical.pojo.NewsClassPojo;
-import com.example.administrator.medical.pojo.NewsDecriptionPojo;
+import com.example.administrator.medical.pojo.NewsDescriptionPojo;
 import com.example.administrator.medical.utils.TextUtils;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.util.List;
 
 /**
  * Created by Administrator on 2015/7/17.
@@ -42,7 +38,7 @@ public class NewsDescriptionCommand extends BaseCommand{
             return null;
         }
         try{
-            return new Gson().fromJson(detailJson, NewsDecriptionPojo.class);
+            return new Gson().fromJson(detailJson, NewsDescriptionPojo.class);
         }catch (Exception e){
             return null;
         }
