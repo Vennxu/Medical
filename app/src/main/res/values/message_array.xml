@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="messages">
+        <item>社会热点</item>
+        <item>食品新闻</item>
+        <item>药品新闻</item>
+        <item>生活贴士</item>
+        <item>医药新闻</item>
+        <item>企业要闻</item>
+    </string-array>
+</resources>

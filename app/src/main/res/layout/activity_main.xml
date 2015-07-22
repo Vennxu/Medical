@@ -1,0 +1,23 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_toolbar"/>
+
+    <com.example.administrator.medical.ui.widget.PagerSlidingTabStrip
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/main_strip"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/actionBarStyle"
+        app:pstsIndicatorColor="@color/white"
+        app:pstsTabTextColor="@color/white"
+        app:pstsUnderlineHeight="2px"
+        app:pstsIndicatorHeight="2dp"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/main_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>
