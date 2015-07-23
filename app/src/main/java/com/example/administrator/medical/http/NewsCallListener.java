@@ -16,13 +16,9 @@ import java.io.IOException;
  */
 public abstract class NewsCallListener {
 
-    private static final String TAG = NewsCallListener.class.getSimpleName();
-
     private Handler handler;
     private NewsHttpManager httpManager;
     protected NewsResultListener mResultListener;
-
-    protected String mUrl;
     private BaseCommand mBaseCommand;
 
     public NewsCallListener(Handler handler, NewsHttpManager httpManager, NewsResultListener resultListener) {
@@ -42,20 +38,20 @@ public abstract class NewsCallListener {
     }
 
     public void dispose() {
-        boolean succese = true;
+        boolean success = true;
         String pose = null;
         try {
             pose = httpManager.get(mBaseCommand.paramWithUrl());
             Log.d(mBaseCommand.getTagName(), mBaseCommand.paramWithUrl());
             Log.d(mBaseCommand.getTagName(), pose);
             if (TextUtils.isEmpty(pose)){
-                result(succese, null);
+                result(success, null);
                 return;
             }
             JSONObject jsonObject = new JSONObject(pose);
             if (jsonObject.has("success")) {
-                succese = jsonObject.getBoolean("success");
-                result(succese, mBaseCommand.getJson(pose));
+                success = jsonObject.getBoolean("success");
+                result(success, mBaseCommand.getJson(pose));
                 return;
             }
         } catch (IOException e) {
@@ -63,11 +59,11 @@ public abstract class NewsCallListener {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        result(succese, null);
+        result(success, null);
     }
 
     public abstract BaseCommand doBackground();
 
-    public abstract void result(boolean succese, Object result);
+    public abstract void result(boolean success, Object result);
 
 }

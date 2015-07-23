@@ -1,9 +1,10 @@
 package com.example.administrator.medical.ui;
 
-import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.Vibrator;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
@@ -17,10 +18,13 @@ import com.example.administrator.medical.imageloader.NewImageDisplay;
 import com.example.administrator.medical.pojo.NewsDescriptionPojo;
 import com.example.administrator.medical.utils.DataUtils;
 
+import me.imid.swipebacklayout.lib.SwipeBackLayout;
+import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
+
 /**
  * Created by Administrator on 2015/7/21.
  */
-public class NewsDescriptionActivity extends Activity implements Handler.Callback{
+public class NewsDescriptionActivity extends SwipeBackActivity implements Handler.Callback{
 
     public static final String DETAIL = "detail";
     public static final int LOAD_SUCCESS = 101;
@@ -30,15 +34,18 @@ public class NewsDescriptionActivity extends Activity implements Handler.Callbac
     private TextView mContent;
     private TextView mTime;
     private ImageView mImage;
+    private SwipeBackLayout mSwipeBackLayout;
     private NewsDescriptionPojo mDetail;
     private String titleId;
 
     private Handler handler = new Handler(this);
-
+    private static final int VIBRATE_DURATION = 20;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_description);
+        mSwipeBackLayout = getSwipeBackLayout();
+        mSwipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
         titleId = getIntent().getStringExtra(DETAIL);
         onDescriptionView();
     }

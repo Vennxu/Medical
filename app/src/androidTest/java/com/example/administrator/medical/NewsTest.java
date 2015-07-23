@@ -21,7 +21,7 @@ public class NewsTest extends InstrumentationTestCase{
         NewsHttpManager httpManager = NewsHttpManager.getInstance(getInstrumentation().getTargetContext());
         httpManager.getNewsClass("1", "企业要闻", new NewsResultListener() {
             @Override
-            public void onResult(boolean succes, Object result) {
+            public void onResult(boolean success, Object result) {
 
             }
         });

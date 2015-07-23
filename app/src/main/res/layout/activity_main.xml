@@ -13,8 +13,10 @@
         android:background="@color/actionBarStyle"
         app:pstsIndicatorColor="@color/white"
         app:pstsTabTextColor="@color/white"
+        app:pstsDividerColor="@android:color/transparent"
+        app:pstsTabSelectedTextStyle="bold"
         app:pstsUnderlineHeight="2px"
-        app:pstsIndicatorHeight="2dp"/>
+        app:pstsIndicatorHeight="2dp" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/main_viewpager"

@@ -5,21 +5,20 @@ import com.example.administrator.medical.utils.TextUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Administrator on 2015/7/17.
  */
-public class NewsClasssCommand extends BaseCommand{
+public class NewsClassCommand extends BaseCommand{
 
-    private static final String TAG = NewsClasssCommand.class.getSimpleName();
+    private static final String TAG = NewsClassCommand.class.getSimpleName();
     private static final String URL = NewsCommandUrl.NEWS_CLASS;
 
     private String id;
     private String name;
 
-    public NewsClasssCommand(){
+    public NewsClassCommand(){
 
     }
 

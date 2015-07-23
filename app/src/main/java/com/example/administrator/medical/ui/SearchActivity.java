@@ -18,7 +18,6 @@ import android.widget.TextView;
 import com.example.administrator.medical.R;
 import com.example.administrator.medical.http.NewsHttpManager;
 import com.example.administrator.medical.http.NewsResultListener;
-import com.example.administrator.medical.pojo.NewsListPolo;
 import com.example.administrator.medical.pojo.NewsSearchPojo;
 import com.example.administrator.medical.ui.adapter.NewsBaseAdapter;
 import com.example.administrator.medical.ui.adapter.RecyclerItemClickerListener;
@@ -31,10 +30,10 @@ import java.util.ArrayList;
  */
 public class SearchActivity extends Activity implements View.OnClickListener, Handler.Callback{
 
-    private static final int LOAD_SUCCES = 101;
+    private static final int LOAD_SUCCESS = 101;
     private static final int LOAD_FAILED = 102;
 
-    private EditText mEidtText;
+    private EditText mEditText;
     private ImageView mSearchBtn;
     private RecyclerView mSearchList;
     private SearchAdapter mAdapter;
@@ -53,7 +52,7 @@ public class SearchActivity extends Activity implements View.OnClickListener, Ha
                 startActivity(intent);
             }
         });
-        mEidtText = (EditText) findViewById(R.id.search_edit);
+        mEditText = (EditText) findViewById(R.id.search_edit);
         mSearchBtn = (ImageView) findViewById(R.id.search_btn);
         mSearchList = (RecyclerView) findViewById(R.id.search_list);
         LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
@@ -66,7 +65,7 @@ public class SearchActivity extends Activity implements View.OnClickListener, Ha
         NewsHttpManager.getInstance(this).getNewsSearch("1", "20", keyword, new NewsResultListener() {
             @Override
             public void onResult(boolean success, Object result) {
-                handler.obtainMessage(success ? LOAD_SUCCES : LOAD_FAILED, result).sendToTarget();
+                handler.obtainMessage(success ? LOAD_SUCCESS : LOAD_FAILED, result).sendToTarget();
             }
         });
     }
@@ -75,7 +74,7 @@ public class SearchActivity extends Activity implements View.OnClickListener, Ha
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.search_btn:
-                String keyword = mEidtText.getText().toString();
+                String keyword = mEditText.getText().toString();
                 if (!TextUtils.isEmpty(keyword)){
                     search(keyword);
                 }
@@ -89,7 +88,7 @@ public class SearchActivity extends Activity implements View.OnClickListener, Ha
     public boolean handleMessage(Message msg) {
         boolean handle = true;
         switch (msg.what){
-            case LOAD_SUCCES:
+            case LOAD_SUCCESS:
                 ArrayList<NewsSearchPojo> newsSearchPojos = (ArrayList<NewsSearchPojo>) msg.obj;
                 if (newsSearchPojos != null) {
                     mAdapter.addRefreshData(newsSearchPojos);

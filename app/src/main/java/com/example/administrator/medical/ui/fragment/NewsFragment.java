@@ -111,8 +111,8 @@ public class NewsFragment extends BaseFragment implements BGARefreshLayout.BGARe
         }
         mHttpManager.getNewsList(mNewsClassPojo.getId(), mIsRefresh ? mRefreshPage : mMorePage, "20", "id", new NewsResultListener() {
             @Override
-            public void onResult(boolean succes, Object result) {
-                mHandler.obtainMessage(succes ? LOAD_SUCCES : LOAD_FAILED, result).sendToTarget();
+            public void onResult(boolean success, Object result) {
+                mHandler.obtainMessage(success ? LOAD_SUCCES : LOAD_FAILED, result).sendToTarget();
             }
         });
     }

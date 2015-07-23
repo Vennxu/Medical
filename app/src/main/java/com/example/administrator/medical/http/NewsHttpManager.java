@@ -5,7 +5,7 @@ import android.os.Handler;
 import android.os.HandlerThread;
 
 import com.example.administrator.medical.command.BaseCommand;
-import com.example.administrator.medical.command.NewsClasssCommand;
+import com.example.administrator.medical.command.NewsClassCommand;
 import com.example.administrator.medical.command.NewsDescriptionCommand;
 import com.example.administrator.medical.command.NewsListCommand;
 import com.example.administrator.medical.command.NewsSearchCommand;
@@ -17,7 +17,6 @@ public class NewsHttpManager extends BaseHttpManager {
 
     public static NewsHttpManager mHttpManager = null;
 
-    private HandlerThread mHandlerThread;
     private Handler mHandler;
 
     public static NewsHttpManager getInstance(Context context){
@@ -39,7 +38,7 @@ public class NewsHttpManager extends BaseHttpManager {
     }
 
     public void getNewsClass( String id, String name, NewsResultListener resultListener){
-        final NewsClasssCommand command = new NewsClasssCommand();
+        final NewsClassCommand command = new NewsClassCommand();
         command.setId(id);
         command.setName(name);
         new NewsCallListener(mHandler, mHttpManager, resultListener) {
@@ -49,8 +48,8 @@ public class NewsHttpManager extends BaseHttpManager {
             }
 
             @Override
-            public void result(boolean succese, Object result) {
-                mResultListener.onResult(succese, result);
+            public void result(boolean success, Object result) {
+                mResultListener.onResult(success, result);
             }
         }.call();
     }
@@ -69,8 +68,8 @@ public class NewsHttpManager extends BaseHttpManager {
             }
 
             @Override
-            public void result(boolean succese, Object result) {
-                mResultListener.onResult(succese, result);
+            public void result(boolean success, Object result) {
+                mResultListener.onResult(success, result);
             }
         }.call();
     }
@@ -85,8 +84,8 @@ public class NewsHttpManager extends BaseHttpManager {
             }
 
             @Override
-            public void result(boolean succese, Object result) {
-                mResultListener.onResult(succese, result);
+            public void result(boolean success, Object result) {
+                mResultListener.onResult(success, result);
             }
         }.call();
     }
@@ -104,8 +103,8 @@ public class NewsHttpManager extends BaseHttpManager {
             }
 
             @Override
-            public void result(boolean succese, Object result) {
-                mResultListener.onResult(succese, result);
+            public void result(boolean success, Object result) {
+                mResultListener.onResult(success, result);
             }
         }.call();
     }

@@ -23,25 +23,11 @@ public class BaseHttpManager{
 
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
-    public static BaseHttpManager mHttpManager = null;
-
     private HandlerThread mHandlerThread;
     private Looper mLooper;
 
     private OkHttpClient mClient = null;
 
-    public static BaseHttpManager getInstance(Context context){
-        if (mHttpManager == null){
-            initInstance(context.getApplicationContext());
-        }
-        return mHttpManager;
-    }
-
-    public static synchronized void initInstance(Context context){
-        if (mHttpManager == null){
-            mHttpManager = new BaseHttpManager(context);
-        }
-    }
 
     public BaseHttpManager(Context context){
         mHandlerThread = new HandlerThread("BaseHttpManager");

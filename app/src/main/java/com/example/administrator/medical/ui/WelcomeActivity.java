@@ -17,7 +17,7 @@ import java.util.ArrayList;
 /**
  * Created by Administrator on 2015/7/22.
  */
-public class WelcomActivity extends Activity implements Handler.Callback{
+public class WelcomeActivity extends Activity implements Handler.Callback{
 
     private static final int LOAD_SUCCES = 101;
     private static final int LOAD_FAILED = 102;
@@ -33,8 +33,8 @@ public class WelcomActivity extends Activity implements Handler.Callback{
     private void getLoadSubtitle(){
         NewsHttpManager.getInstance(this).getNewsClass("1", getString(R.string.news_class), new NewsResultListener() {
             @Override
-            public void onResult(boolean succes, Object result) {
-                handler.obtainMessage(succes ? LOAD_SUCCES : LOAD_FAILED, result).sendToTarget();
+            public void onResult(boolean success, Object result) {
+                handler.obtainMessage(success ? LOAD_SUCCES : LOAD_FAILED, result).sendToTarget();
             }
         });
     }
